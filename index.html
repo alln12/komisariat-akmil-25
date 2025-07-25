@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komisariat Akmil Championship 2025</title>
+  <meta name="description" content="Pendaftaran Kejuaraan Pencak Silat Nasional Komisariat Akmil 2025">
+  
+  <!-- Font Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: #013220;
+      color: #f0f0f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Navbar */
+    nav {
+      background-color: rgba(0, 51, 0, 0.95);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #FFD700;
+    }
+    
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #FFD700;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links {
+      display: none;
+    }
+    
+    /* Tombol Menu Mobile */
+    .mobile-menu-btn {
+      background: transparent;
+      border: none;
+      width: 30px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      z-index: 101;
+    }
+    
+    .mobile-menu-btn span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: #FFD700;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      left: 0;
+    }
+    
+    .mobile-menu-btn span:nth-child(1) {
+      top: 0;
+    }
+    
+    .mobile-menu-btn span:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .mobile-menu-btn span:nth-child(3) {
+      bottom: 0;
+    }
+    
+    /* Animasi Tombol Jadi "X" */
+    .mobile-menu-btn.active span:nth-child(1) {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-btn.active span:nth-child(3) {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+    
+    /* Sidebar Mobile */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      background: #002010;
+      z-index: 100;
+      transition: all 0.4s ease;
+      padding: 80px 20px 20px;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      border-left: 1px solid #FFD700;
+    }
+    
+    .mobile-sidebar.active {
+      right: 0;
+    }
+    
+    .mobile-sidebar a {
+      display: block;
+      color: #f0f0f0;
+      text-decoration: none;
+      padding: 15px 0;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      transition: all 0.3s;
+    }
+    
+    .mobile-sidebar a:hover {
+      color: #FFD700;
+      padding-left: 10px;
+    }
+    
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #013220 0%, #002010 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #FFD700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+    
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #FFD700;
+      color: #003300;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn:hover {
+      background: transparent;
+      color: #FFD700;
+      border-color: #FFD700;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    /* Countdown Timer */
+    .countdown {
+      background: rgba(0, 80, 40, 0.8);
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #FFD700;
+    }
+    
+    .countdown h2 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #FFD700;
+    }
+    
+    #timer {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    
+    /* Sections */
+    section {
+      padding: 40px 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      border: 1px solid #FFD700;
+    }
+    
+    section h2 {
+      color: #013220;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.6rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #FFD700;
+    }
+    
+    /* Peta Lokasi */
+    .peta-container {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      border: 3px solid #FFD700;
+    }
+    
+    .peta-iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+    
+    .alamat {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    footer {
+      background: #001a00;
+      color: #aaa;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+      border-top: 1px solid #FFD700;
+    }
+    
+    /* Responsive Styles */
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+      
+      .nav-links {
+        display: flex;
+      }
+      
+      .nav-links a {
+        color: #f0f0f0;
+        text-decoration: none;
+        margin-left: 25px;
+        font-weight: 600;
+        transition: all 0.3s;
+        position: relative;
+      }
+      
+      .nav-links a:hover {
+        color: #FFD700;
+      }
+      
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #FFD700;
+        transition: width 0.3s;
+      }
+      
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .mobile-sidebar {
+        display: none;
+      }
+      
+      .overlay {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-logo">AKMIL CHAMPIONSHIP</div>
+    
+    <button class="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <div class="nav-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#lokasi">Lokasi</a>
+      <a href="#syarat">Syarat</a>
+      <a href="#daftar">Daftar</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+  </nav>
+  
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar">
+    <a href="#tentang">Tentang</a>
+    <a href="#lokasi">Lokasi</a>
+    <a href="#syarat">Syarat</a>
+    <a href="#daftar">Daftar</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+  
+  <!-- Overlay -->
+  <div class="overlay"></div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>KOMPETISI PENCAK SILAT NASIONAL 2025</h1>
+    <p>Kejuaraan bergengsi untuk atlet terbaik se-Indonesia</p>
+    <a href="#daftar" class="btn">DAFTAR SEKARANG</a>
+  </section>
+  
+  <!-- Countdown Timer -->
+  <div class="countdown">
+    <h2>Waktu Menuju Event:</h2>
+    <div id="timer">Loading...</div>
+  </div>
+  
+  <!-- Tentang Event -->
+  <section id="tentang">
+    <h2>Tentang Kejuaraan</h2>
+    <p>Komisariat Akmil Championship adalah ajang tahunan pencak silat yang mempertemukan atlet terbaik dari seluruh Indonesia.</p>
+  </section>
+  
+  <!-- Peta Lokasi -->
+  <section id="lokasi">
+    <h2>Lokasi Event</h2>
+    <p>Temukan lokasi kejuaraan di peta berikut:</p>
+    
+    <div class="peta-container">
+      <iframe 
+        class="peta-iframe"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.366678059729!2d110.21827731525835!3d-7.595277994505725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8d00a9d823a1%3A0x1c1a3d4e7e0e3b0a!2sJl.%20Gatot%20Subroto%20No.1%2C%20Magelang!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+    
+    <div class="alamat">
+      <p>📍 <strong>Alamat:</strong> Jl. Gatot Subroto No.1, Magelang, Jawa Tengah</p>
+    </div>
+  </section>
+  
+  <!-- Syarat -->
+  <section id="syarat">
+    <h2>Persyaratan Peserta</h2>
+    <ul style="text-align: left; margin-left: 20px; color: #555;">
+      <li>Warga Negara Indonesia</li>
+      <li>Sehat jasmani dan rohani</li>
+    </ul>
+  </section>
+  
+  <!-- Form Pendaftaran -->
+  <section id="daftar">
+    <h2>Pendaftaran Peserta</h2>
+    <p style="color: #555;">Klik tombol di bawah ini untuk mengisi formulir pendaftaran online:</p>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKHxg6-WNNcQBWQB5mppDZCkmXBl2Wp5dNv_jjQDuY47Z6WQ/viewform" target="_blank" class="btn">
+        BUKA FORMULIR PENDAFTARAN
+      </a>
+    </div>
+  </section>
+  
+  <!-- Kontak -->
+  <section id="kontak">
+    <h2>Hubungi Kami</h2>
+    <p style="color: #555;"><strong>whatsapp</strong>Yuli (+6289527854144)</p>
+    <p style="color: #555;"><strong>Email:</strong>akmilchampionship
+    2025@gmail.com</p>
+    <p style="color: #555;"><strong>Alamat:</strong> Jl. Gatot Subroto No.1, Magelang</p>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Komisariat Akmil Championship. All Rights Reserved.</p>
+  </footer>
+  
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const overlay = document.querySelector('.overlay');
+    
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+      
+      // Lock scroll ketika sidebar aktif
+      if (sidebar.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Tutup sidebar saat klik overlay atau link
+    overlay.addEventListener('click', () => {
+      menuBtn.classList.remove('active');
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    document.querySelectorAll('.mobile-sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+    
+    // Countdown Timer
+    const eventDate = new Date("october 3, 2025 08:00:00").getTime();
+    
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      
+      if (distance < 0) {
+        document.getElementById("timer").innerHTML = "EVENT TELAH DIMULAI!";
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById("timer").innerHTML = 
+        `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+    };
+    
+    setInterval(updateTimer, 1000);
+    updateTimer();
+    
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
